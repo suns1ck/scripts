@@ -23,7 +23,7 @@ def compose_collect(compose_dict):
         if not os.path.exists(deployment_location):        
             try:
                 subprocess.run(["mkdir", "-p", deployment_location], check=True)
-                print(f"Successfully created directory ({deployment_location})")
+                print(f"Successfully generated missing deployment directory: {deployment_location}.")
             except subprocess.CalledProcessError as e:
                 print(f"Failed to create directory: {e}")
                 exit()
@@ -48,20 +48,19 @@ def compose_process(compose_dict):
         deployment_directory = details["deployment_directory"]
 
         if urllib.parse.urlparse(compose_location).scheme:
-            print(f"Downloading remote compose file for {application_name} and placing in deployment directory.")
+            print(f"Downloading remote {application_name} compose file and placing in deployment directory...")
             try:
                 response = requests.get(compose_location)
                 response.raise_for_status()  # Raise an error for bad responses
                 with open(os.path.join(deployment_directory, "docker-compose.yml"), "wb") as f:
                     f.write(response.content)
-                print(f"Successfully placed {application_name} compose file.")
             except requests.exceptions.RequestException as e:
                 print(f"Failed to place {application_name} compose file: {e}")
                 continue
 
         else:
             try:
-                print(f"Copying local compose file for {application_name} to it's deployment directory.")
+                print(f"Copying local {application_name} compose file to it's deployment directory...")
                 subprocess.run(["cp", compose_location, os.path.join(deployment_directory, "docker-compose.yml")], check=True)
             except subprocess.CalledProcessError as e:
                 print(f"Failed to copy {application_name} compose file to {deployment_directory}: {e}")
@@ -70,6 +69,8 @@ def compose_process(compose_dict):
 def compose_deploy(compose_dict):
 
     # This function will iterate through the deployment location value(s) and deploy all specified containers/applications.
+
+    input("Configure your compose files if necessary and then press enter to continue.")
 
     for application_name, details in compose_dict.items():
         deployment_directory = details["deployment_directory"]
