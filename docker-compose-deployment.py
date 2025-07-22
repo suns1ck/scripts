@@ -74,7 +74,6 @@ def compose_deploy(compose_dict):
 
     for application_name, details in compose_dict.items():
         deployment_directory = details["deployment_directory"]
-
         try:
             subprocess.run(["docker-compose", "up", "-d"], cwd=deployment_directory, check=True)
         except subprocess.CalledProcessError as e:
