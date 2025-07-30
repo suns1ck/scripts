@@ -83,3 +83,5 @@ def main():
     compose_collect(compose_dict)
     compose_process(compose_dict)
     compose_deploy(compose_dict)
+
+main()
