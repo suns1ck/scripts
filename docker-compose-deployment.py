@@ -79,7 +79,7 @@ def compose_deploy(compose_dict):
         except subprocess.CalledProcessError as e:
             print(f"Your container failed to deploy: {e}")
 
-
-compose_collect(compose_dict)
-compose_process(compose_dict)
-compose_deploy(compose_dict)
+def main():
+    compose_collect(compose_dict)
+    compose_process(compose_dict)
+    compose_deploy(compose_dict)
