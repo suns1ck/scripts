@@ -84,4 +84,5 @@ def main():
     compose_process(compose_dict)
     compose_deploy(compose_dict)
 
-main()
+if __name__ == __main__:
+    main()
