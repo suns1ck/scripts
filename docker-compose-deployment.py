@@ -84,5 +84,5 @@ def main():
     compose_process(compose_dict)
     compose_deploy(compose_dict)
 
-if __name__ == __main__:
+if __name__ == __docker-compose-deployment__:
     main()
