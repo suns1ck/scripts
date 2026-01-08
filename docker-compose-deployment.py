@@ -91,9 +91,9 @@ def compose_deploy(compose_dict):
 
 def deployment_check(compose_dict):
 
-    # This function performs a post deployment check and based on the result prints a recommended action.
+    # This function performs a post deployment check and prints out the result.
     # I would like to find a way to order these based on their state but for now will work to get it functioning without a specific order.
-    
+
     print("Waiting for containers to start. Please do not escape the script.")
     time.sleep(30)
     
