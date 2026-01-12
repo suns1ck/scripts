@@ -6,9 +6,9 @@ container_start = null
 deployment_check = null
 
 def main():
-    compose_scrape()
-    compose_validation()
-    container_start()
-    deployment_check()
+    compose_collect()
+    compose_validate()
+    compose_deploy()
+    postdeploy_check()
 
 main()
